@@ -13,7 +13,7 @@ const clickToSearch = () => {
 
       if (itemsName === '') {
         errorContent.innerHTML = `
-          <div class="error">
+          <div class="error-content">
             <h2>The search box cannot be empty.</h2>
             <button onclick="closeBtn()" class="close">X</button>
           </div>
@@ -33,7 +33,7 @@ const clickToSearch = () => {
         foodItems.innerHTML = dataItem;
       } else {
         errorContent.innerHTML = `
-          <div class="error">
+          <div class="error-content">
             <h2>Sorry, We do not have this item at this time.</h2>
             <button onclick="closeBtn()" class="close">X</button>
           </div>

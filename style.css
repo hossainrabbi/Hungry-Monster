@@ -86,7 +86,7 @@ li {
   display: none;
 }
 .item-details,
-.error {
+.error-content {
   background-color: #f8f7f5;
   width: 500px;
   padding: 30px;
@@ -147,7 +147,7 @@ li {
     grid-template-columns: repeat(2, 1fr);
   }
   .item-details,
-  .error {
+  .error-content {
     width: 300px;
     padding: 10px;
   }
