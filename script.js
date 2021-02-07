@@ -42,6 +42,7 @@ const clickToSearch = () => {
         errorContent.style.display = 'block';
         foodItems.innerHTML = '';
       }
+      detailsArea.style.display = 'none';
     });
   searchInput.value = '';
 };
