@@ -7,6 +7,9 @@
 body {
   font-family: 'Dosis', sans-serif;
 }
+img {
+  max-width: 100%;
+}
 
 .container {
   max-width: 1170px;
@@ -41,8 +44,14 @@ body {
 }
 
 .food-items {
-  background-color: red;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px 20px;
+  gap: 25px;
+  margin-top: 50px;
+}
+.food-item {
+  background-color: #f8f7f5;
+}
+.food-item h4 {
+  padding: 10px 0;
 }
