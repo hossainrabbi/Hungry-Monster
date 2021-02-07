@@ -2,6 +2,7 @@ const searchInput = document.getElementById('search-input');
 const detailsArea = document.getElementById('details-area');
 const itemDetailsArea = document.getElementById('item-details');
 
+// Search area
 const clickToSearch = () => {
   const itemsName = searchInput.value;
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemsName}`)
@@ -15,7 +16,7 @@ const clickToSearch = () => {
           <h2>The search box cannot be empty.</h2>
           <button onclick="closeBtn()" class="close">X</button>
       `;
-        detailsArea.style.top = '0';
+        detailsArea.style.display = 'block';
       } else if (data.meals) {
         data.meals.forEach((item) => {
           dataItem += `
@@ -30,12 +31,13 @@ const clickToSearch = () => {
           <h2>Sorry, We do not have this item at this time.</h2>
           <button onclick="closeBtn()" class="close">X</button>
       `;
-        detailsArea.style.top = '0';
+        detailsArea.style.display = 'block';
       }
     });
   searchInput.value = '';
 };
 
+// 1item click to show Deatils
 const itemDetails = (itemName) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemName}`)
     .then((res) => res.json())
@@ -60,10 +62,12 @@ const itemDetails = (itemName) => {
         </ul>
         <button onclick="closeBtn()" class="close">X</button>
       `;
-      detailsArea.style.top = '0';
+
+      detailsArea.style.display = 'block';
     });
 };
 
+// Clock to close button
 const closeBtn = () => {
-  detailsArea.style.top = '-100%';
+  detailsArea.style.display = 'none';
 };
