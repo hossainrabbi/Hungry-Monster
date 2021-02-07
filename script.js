@@ -1,6 +1,6 @@
 const searchInput = document.getElementById('search-input');
 const detailsArea = document.getElementById('details-area');
-const itemDetailsArea = document.getElementById('item-details');
+const error = document.getElementById('error-area');
 
 // Search area
 const clickToSearch = () => {
@@ -12,11 +12,15 @@ const clickToSearch = () => {
       let dataItem = '';
 
       if (itemsName === '') {
-        itemDetailsArea.innerHTML = `
-          <h2>The search box cannot be empty.</h2>
-          <button onclick="closeBtn()" class="close">X</button>
-      `;
-        detailsArea.style.display = 'block';
+        error.innerHTML = `
+          <div class="error">
+            <h2>The search box cannot be empty.</h2>
+            <button onclick="closeBtn()" class="close">X</button>
+          </div>
+        `;
+
+        error.style.display = 'block';
+        foodItems.innerHTML = '';
       } else if (data.meals) {
         data.meals.forEach((item) => {
           dataItem += `
@@ -25,13 +29,18 @@ const clickToSearch = () => {
             <h4>${item.strMeal}</h4>
           </div>`;
         });
+
         foodItems.innerHTML = dataItem;
       } else {
-        itemDetailsArea.innerHTML = `
-          <h2>Sorry, We do not have this item at this time.</h2>
-          <button onclick="closeBtn()" class="close">X</button>
-      `;
-        detailsArea.style.display = 'block';
+        error.innerHTML = `
+          <div class="error">
+            <h2>Sorry, We do not have this item at this time.</h2>
+            <button onclick="closeBtn()" class="close">X</button>
+          </div>
+        `;
+
+        error.style.display = 'block';
+        foodItems.innerHTML = '';
       }
     });
   searchInput.value = '';
@@ -42,6 +51,7 @@ const itemDetails = (itemName) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemName}`)
     .then((res) => res.json())
     .then((data) => {
+      const itemDetailsArea = document.getElementById('item-details');
       const mealsItem = data.meals[0];
       itemDetailsArea.innerHTML = `
         <div class="details-img">
@@ -70,4 +80,5 @@ const itemDetails = (itemName) => {
 // Clock to close button
 const closeBtn = () => {
   detailsArea.style.display = 'none';
+  error.style.display = 'none';
 };
