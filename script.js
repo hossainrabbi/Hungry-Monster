@@ -28,5 +28,28 @@ function clickToSearch() {
 function itemDetails(itemName) {
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemName}`)
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      const itemDetailsArea = document.getElementById('item-details');
+      const mealsItem = data.meals[0];
+      itemDetailsArea.innerHTML = `
+        <div class="details-img">
+          <img
+            src="${mealsItem.strMealThumb}"
+            alt="${mealsItem.strMeal}"
+          />
+        </div>
+        <h2>${mealsItem.strMeal}</h2>
+        <h4>Ingredient</h4>
+        <ul>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient1}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient2}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient3}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient4}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient5}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient6}</li>
+        </ul>
+        <button class="close">X</button>
+      `;
+      console.log(itemDetailsArea, mealsItem);
+    });
 }

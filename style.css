@@ -7,8 +7,17 @@
 body {
   font-family: 'Dosis', sans-serif;
 }
+h1,
+h2,
+h3,
+h4 {
+  color: #252525;
+}
 img {
   max-width: 100%;
+}
+li {
+  list-style-type: none;
 }
 
 .container {
@@ -54,4 +63,52 @@ img {
 }
 .food-item h4 {
   padding: 10px 0;
+}
+
+.item-details {
+  background-color: #f8f7f5;
+  width: 500px;
+  padding: 20px;
+  margin: 20px auto;
+  position: relative;
+}
+.details-img {
+  width: 300px;
+  margin: 0 auto;
+}
+.details-img img {
+  border-radius: 10px;
+}
+.check-icon {
+  color: #fff;
+  background-color: #f06c4e;
+  padding: 1px 4px;
+  font-size: 12px;
+  margin-right: 10px;
+  display: inline-block;
+  border-radius: 3px;
+}
+.item-details h2 {
+  margin: 12px 0;
+}
+.item-details h4 {
+  margin-bottom: 10px;
+}
+.item-details li {
+  margin-top: 4px;
+  color: #6c6c6c;
+}
+.close {
+  padding: 4px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  background-color: #fff;
+  border-radius: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #f06c4e;
+  font-weight: 600;
 }
