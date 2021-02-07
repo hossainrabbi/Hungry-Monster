@@ -1,6 +1,9 @@
 const searchInput = document.getElementById('search-input');
-function clickToSearch() {
-  const itemsName = searchInput.value; //'chicken_breast'
+const detailsArea = document.getElementById('details-area');
+const itemDetailsArea = document.getElementById('item-details');
+
+const clickToSearch = () => {
+  const itemsName = searchInput.value;
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemsName}`)
     .then((res) => res.json())
     .then((data) => {
@@ -8,7 +11,11 @@ function clickToSearch() {
       let dataItem = '';
 
       if (itemsName === '') {
-        alert('The search box cannot be empty');
+        itemDetailsArea.innerHTML = `
+          <h2>The search box cannot be empty.</h2>
+          <button onclick="closeBtn()" class="close">X</button>
+      `;
+        detailsArea.style.top = '0';
       } else if (data.meals) {
         data.meals.forEach((item) => {
           dataItem += `
@@ -19,17 +26,20 @@ function clickToSearch() {
         });
         foodItems.innerHTML = dataItem;
       } else {
-        alert('Sorry, We do not have this item at this time.');
+        itemDetailsArea.innerHTML = `
+          <h2>Sorry, We do not have this item at this time.</h2>
+          <button onclick="closeBtn()" class="close">X</button>
+      `;
+        detailsArea.style.top = '0';
       }
     });
   searchInput.value = '';
-}
+};
 
-function itemDetails(itemName) {
+const itemDetails = (itemName) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemName}`)
     .then((res) => res.json())
     .then((data) => {
-      const itemDetailsArea = document.getElementById('item-details');
       const mealsItem = data.meals[0];
       itemDetailsArea.innerHTML = `
         <div class="details-img">
@@ -41,15 +51,19 @@ function itemDetails(itemName) {
         <h2>${mealsItem.strMeal}</h2>
         <h4>Ingredient</h4>
         <ul>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient1}</li>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient2}</li>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient3}</li>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient4}</li>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient5}</li>
-          <li><span class="check-icon">&#x2714;</span>${mealsItem.strIngredient6}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure1} ${mealsItem.strIngredient1}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure2} ${mealsItem.strIngredient2}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure3} ${mealsItem.strIngredient3}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure4} ${mealsItem.strIngredient4}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure5} ${mealsItem.strIngredient5}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure6} ${mealsItem.strIngredient6}</li>
         </ul>
-        <button class="close">X</button>
+        <button onclick="closeBtn()" class="close">X</button>
       `;
-      console.log(itemDetailsArea, mealsItem);
+      detailsArea.style.top = '0';
     });
-}
+};
+
+const closeBtn = () => {
+  detailsArea.style.top = '-100%';
+};
