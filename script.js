@@ -1,6 +1,6 @@
 const searchInput = document.getElementById('search-input');
 const detailsArea = document.getElementById('details-area');
-const error = document.getElementById('error-area');
+const errorContent = document.getElementById('error-area');
 
 // Search area
 const clickToSearch = () => {
@@ -12,14 +12,14 @@ const clickToSearch = () => {
       let dataItem = '';
 
       if (itemsName === '') {
-        error.innerHTML = `
+        errorContent.innerHTML = `
           <div class="error">
             <h2>The search box cannot be empty.</h2>
             <button onclick="closeBtn()" class="close">X</button>
           </div>
         `;
 
-        error.style.display = 'block';
+        errorContent.style.display = 'block';
         foodItems.innerHTML = '';
       } else if (data.meals) {
         data.meals.forEach((item) => {
@@ -32,14 +32,14 @@ const clickToSearch = () => {
 
         foodItems.innerHTML = dataItem;
       } else {
-        error.innerHTML = `
+        errorContent.innerHTML = `
           <div class="error">
             <h2>Sorry, We do not have this item at this time.</h2>
             <button onclick="closeBtn()" class="close">X</button>
           </div>
         `;
 
-        error.style.display = 'block';
+        errorContent.style.display = 'block';
         foodItems.innerHTML = '';
       }
     });
@@ -80,5 +80,5 @@ const itemDetails = (itemName) => {
 // Clock to close button
 const closeBtn = () => {
   detailsArea.style.display = 'none';
-  error.style.display = 'none';
+  errorContent.style.display = 'none';
 };
