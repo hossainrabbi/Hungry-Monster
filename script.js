@@ -70,6 +70,10 @@ const itemDetails = (itemName) => {
           <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure4} ${mealsItem.strIngredient4}</li>
           <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure5} ${mealsItem.strIngredient5}</li>
           <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure6} ${mealsItem.strIngredient6}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure7} ${mealsItem.strIngredient7}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure8} ${mealsItem.strIngredient8}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure9} ${mealsItem.strIngredient9}</li>
+          <li><span class="check-icon">&#x2714;</span>${mealsItem.strMeasure10} ${mealsItem.strIngredient10}</li>
         </ul>
         <button onclick="closeBtn()" class="close">X</button>
       `;
